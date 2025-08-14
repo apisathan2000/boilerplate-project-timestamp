@@ -60,6 +60,15 @@ app.get("/api/:date", function (req, res) {
   // res.status(200).json({ unix: parsedUnix, utc: d.toUTCString() });
 });
 
+// Add endpoint for empty date parameter
+app.get("/api", function (req, res) {
+  const now = new Date();
+  res.json({
+    unix: now.getTime(),
+    utc: now.toUTCString()
+  });
+});
+
 // Listen on port set in environment variable or default to 3000
 var listener = app.listen(process.env.PORT || 3000, function () {
   console.log("Your app is listening on port " + listener.address().port);
